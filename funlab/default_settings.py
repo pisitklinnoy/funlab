@@ -1,0 +1,2 @@
+APP_TITLE = "FUN LAB WEB"
+MONGODB_DB = "funlabDB"

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+DEBUG=true poetry run funlab-web -H 0.0.0.0 -d
