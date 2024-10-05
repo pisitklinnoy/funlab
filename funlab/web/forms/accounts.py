@@ -1,53 +1,54 @@
-from flask_wtf import FlaskForm
-from wtforms import fields, validators
-
-from flask_wtf.file import FileAllowed
 from flask_mongoengine.wtf import model_form
+from flask_wtf import FlaskForm, file
+from wtforms import fields, widgets, validators
+import email_validator
+
+import datetime
+
 from funlab import models
 
+BaseRegistrationForm = model_form(
+    models.User,
+    FlaskForm,
+    exclude=[
+        "created_date",
+        "updated_date",
+        "roles",
+        "last_login_date",
+        "status",
+    ],
+    field_args={
+        "username": {"label": "Username"},
+        "first_name": {"label": "Firstname"},
+        "last_name": {"label": "Lastname"},
+    },
+)
 
-class RegisterForm(FlaskForm):
-    username = fields.StringField(
-        "Username",
-        [
-            validators.DataRequired("Username is required."),
-            validators.Length(min=1),
-        ],
+
+class RegistrationForm(BaseRegistrationForm):
+    password = fields.PasswordField(
+        "Password", validators=[validators.InputRequired(), validators.Length(min=6)]
     )
-    input_password = fields.PasswordField(
-        "รหัสผ่าน",
-        validators=[
-            validators.InputRequired(),
-            validators.Length(min=6),
-        ],
-        render_kw={"placeholder": "รหัสผ่าน", "autocomplete": "new-password"},
+    email = fields.StringField(
+        "Email", validators=[validators.Email(), validators.DataRequired()]
     )
-    confirm_password = fields.PasswordField(
-        "ยืนยันรหัสผ่าน",
-        validators=[
-            validators.InputRequired(),
-            validators.Length(min=6),
-            validators.EqualTo("input_password", message="รหัสผ่านไม่ตรงกัน"),
-        ],
-        render_kw={"placeholder": "ยืนยันรหัสผ่าน", "autocomplete": "new-password"},
-    )
-    email = fields.EmailField(
-        "Email",
-        validators=[validators.InputRequired()],
-        render_kw={
-            "placeholder": "อีเมล",
-        },
-    )
+
 
 class LoginForm(FlaskForm):
-    username = fields.StringField(
-        "Username",
-        [
-            validators.DataRequired("Username is required."),
-            validators.Length(min=1),
+    username = fields.StringField("Username", validators=[validators.DataRequired()])
+    password = fields.PasswordField("password", validators=[validators.InputRequired()])
+    submit = fields.SubmitField("Login")
+
+
+class SetupPassword(FlaskForm):
+    password = fields.PasswordField(
+        "New Password", validators=[validators.DataRequired()]
+    )
+    confirm_password = fields.PasswordField(
+        "Confirm Password",
+        validators=[
+            validators.InputRequired(),
+            validators.Length(min=6),
+            validators.EqualTo("password", message="รหัสผ่านไม่ตรงกัน"),
         ],
     )
-    password = fields.PasswordField(
-        "Password", [validators.DataRequired("Password is required.")]
-    )
-    submit = fields.SubmitField("Login")

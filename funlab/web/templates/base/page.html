@@ -1,0 +1,14 @@
+{% extends "/base/base-layout.html" %}
+
+{% include "base/navbar.html" %}
+
+{% block body %}
+
+<main style="min-height: 85vh; background-color: rgb(252, 252, 252)">
+    {% block content %}
+    {% endblock content %}
+</main>
+
+{% include "base/footer.html" %}
+
+{% endblock %}

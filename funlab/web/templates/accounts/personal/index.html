@@ -1,0 +1,76 @@
+{% extends "/base/default-page.html" %}
+{% block content %}
+
+
+<h1 class="ui center aligned header">Responsive UI Examples</h1>
+
+
+<h2 class="ui center aligned header">Basic Responsive</h2>
+
+    <h3 class="ui center aligned header">Celled Stackable Grid</h3>
+
+<div style="padding: 1%;">
+
+
+
+</div>
+
+    <form class="ui form" method="post">
+      {{ form.csrf_token }}
+      <div class="ui stackable celled grid container">
+        <div class="two column row">
+          <div class="column">
+            <label class="label">First name</label>
+            {{ form.first_name }}
+          </div>
+          <div class="column">
+            <label class="label">Last name</label>
+            {{ form.last_name.lable }}
+            {{ form.last_name }}
+          </div>
+        </div>
+        <div class="four column row">
+          <div class="column">
+            <label class="label">Weight</label>
+            {{ form.weight.lable }}
+            {{ form.weight }}
+          </div>
+          <div class="column">
+            <label class="label">Height</label>
+            {{ form.height.lable }}
+            {{ form.height }}
+          </div>
+          <div class="column">
+            <label class="label">Gender</label>
+            {{ form.gender.lable }}
+            {{ form.gender }}
+          </div>
+          <div class="column">
+            <label class="label">Age</label>
+            {{ form.age.lable }}
+            {{ form.age }}
+          </div>
+          <button class="ui fluid large black submit button " type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  <div style="padding: 7%;"
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  > 
+</div>
+{% endblock content%}

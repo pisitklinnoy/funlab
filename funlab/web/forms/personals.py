@@ -8,14 +8,15 @@ from funlab import models
 BasePersonalForm = model_form(
     models.Personal,
     FlaskForm,
-    exclude=["created_date","updated_date"],
+    exclude=["created_date", "updated_date"],
     field_args={
-        "first_name" : {"label": "First Name"},
-        "last_name" : {"label" : "Last Name" },
-        "weight" : {"label" : "Weight"},
-        "height" : {"label" : "Height"},
-    }
+        "first_name": {"label": "First Name"},
+        "last_name": {"label": "Last Name"},
+        "weight": {"label": "Weight"},
+        "height": {"label": "Height"},
+    },
 )
 
+
 class PersonalForm(BasePersonalForm):
-    gender = fields.SelectField("Gender",choices=models.personals.GENDER)
+    gender = fields.SelectField("Gender", choices=models.personals.GENDER)

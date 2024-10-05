@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>{% block title  %}{{ config.get('APP_TITLE') }}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.css') | add_date_url}}">
-    <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') | add_date_url}}"></script>
-    <script src="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.js') | add_date_url}}"></script>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') | add_date_url }}"></script>
+    <script
+        src="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.js') | add_date_url }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+        href="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.css') | add_date_url }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') | add_date_url }}">
     {% block default_head %}{% endblock %}
     {% block additional_head %}{% endblock %}
-  </head>
 
-  <body>
+    <title>
+        {% block title %}
+        {{ config.get('APP_TITLE') }}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
     <div class="pusher">
-      {% block body %}{% endblock body %}
+        {% block body %}{% endblock body %}
     </div>
-  </body>
-	{% block additional_js %}{% endblock %}
+</body>
+<script>
+    $('.ui.dropdown')
+        .dropdown();
+    $(document)
+        .ready(function () {
+            $('.left.sidebar.menu')
+                .sidebar('attach events', '.launch.icon.item', 'show')
+                ;
+        })
+        ;
+</script>
+
+<style type="text/css">
+    #link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% block additional_js %}{% endblock %}
+
 </html>

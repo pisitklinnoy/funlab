@@ -22,13 +22,13 @@ from .. import forms
 module = Blueprint("personal", __name__, url_prefix="/personal")
 
 
-@module.route("/",methods=["GET","POST"])
+@module.route("/", methods=["GET", "POST"])
 def index():
     form = forms.PersonalForm()
     if not form.validate_on_submit():
         print(form.errors)
-        return render_template("/personal/index.html",form=form)
+        return render_template("/personal/index.html", form=form)
     personal = models.Personal()
     form.populate_obj(personal)
     personal.save()
-    return redirect(url_for("foods.index"))
+    return redirect(url_for("home.index"))

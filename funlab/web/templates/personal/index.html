@@ -1,76 +1,79 @@
-{% extends "/base/default-page.html" %}
+{% extends "/base/page.html" %}
 {% block content %}
 
-
-<h1 class="ui center aligned header">Responsive UI Examples</h1>
-
-
-<h2 class="ui center aligned header">Basic Responsive</h2>
-
-    <h3 class="ui center aligned header">Celled Stackable Grid</h3>
-
+<!-- Main Header -->
+<div class="ui center aligned segment" style="margin-top: 8rem; border: 0; box-shadow:none">
+  <p><span class="ui huge text">Responsive UI Examples</span></p>
+  <p><span class="ui big text">Basic Responsive</span></p>
+  <p><span class="ui large text">Celled Stackable Grid</span></p>
+</div>
 <div style="padding: 1%;">
 
+  <!-- Responsive Form -->
+  <form class="ui form" method="post">
+    <!-- CSRF Token for protection -->
+    {{ form.csrf_token }}
 
-
-</div>
-
-    <form class="ui form" method="post">
-      {{ form.csrf_token }}
-      <div class="ui stackable celled grid container">
-        <div class="two column row">
-          <div class="column">
-            <label class="label">First name</label>
+    <!-- Responsive Grid -->
+    <div class="ui stackable celled grid container">
+      <!-- First row: First Name and Last Name -->
+      <div class="two column row">
+        <div class="column">
+          <!-- First Name Field -->
+          <div class="field">
+            <label>First Name</label>
             {{ form.first_name }}
           </div>
-          <div class="column">
-            <label class="label">Last name</label>
-            {{ form.last_name.lable }}
+        </div>
+        <div class="column">
+          <!-- Last Name Field -->
+          <div class="field">
+            <label>Last Name</label>
             {{ form.last_name }}
           </div>
         </div>
-        <div class="four column row">
-          <div class="column">
-            <label class="label">Weight</label>
-            {{ form.weight.lable }}
+      </div>
+
+      <!-- Second row: Weight, Height, Gender, Age -->
+      <div class="four column row">
+        <div class="column">
+          <!-- Weight Field -->
+          <div class="field">
+            <label>Weight</label>
             {{ form.weight }}
           </div>
-          <div class="column">
-            <label class="label">Height</label>
-            {{ form.height.lable }}
+        </div>
+        <div class="column">
+          <!-- Height Field -->
+          <div class="field">
+            <label>Height</label>
             {{ form.height }}
           </div>
-          <div class="column">
-            <label class="label">Gender</label>
-            {{ form.gender.lable }}
+        </div>
+        <div class="column">
+          <!-- Gender Field -->
+          <div class="field">
+            <label>Gender</label>
             {{ form.gender }}
           </div>
-          <div class="column">
-            <label class="label">Age</label>
-            {{ form.age.lable }}
+        </div>
+        <div class="column">
+          <!-- Age Field -->
+          <div class="field">
+            <label>Age</label>
             {{ form.age }}
           </div>
-          <button class="ui fluid large black submit button " type="submit">Submit</button>
         </div>
       </div>
-    </form>
-  <div style="padding: 7%;"
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  > 
+
+      <!-- Submit Button -->
+      <div class="row">
+        <div class="column">
+          <button class="ui fluid large black submit button" type="submit">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-{% endblock content%}
+
+{% endblock content %}

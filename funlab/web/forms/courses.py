@@ -21,14 +21,14 @@ BaseCourseForm = model_form(
         "updater",
     ],
     field_args={
-        "name" : {"label": "Course name"},
-        "description" : {"label" : "Description"},
-        "professor" : {"label" : "Professor"},
-        "code" : {"label" : "Code"},
-        "enrollment" : {"label" : "Enrollment"},
-
-    }
+        "name": {"label": "Course name"},
+        "description": {"label": "Description"},
+        "professor": {"label": "Professor"},
+        "code": {"label": "Code"},
+        "enrollment": {"label": "Enrollment"},
+    },
 )
+
 
 class CourseForm(BaseCourseForm):
     status = fields.SelectField("Course_Status", choices=models.courses.COURSE_STATUS)
