@@ -5,16 +5,10 @@ from flask_login import UserMixin
 
 class User(me.Document, UserMixin):
    meta = {"collection": "users"}
-
-
-   first_name = me.StringField(required=True, max_length=128)
-   last_name = me.StringField(required=True, max_length=128)
-
-
+   first_name = me.StringField(max_length=128)
+   last_name = me.StringField(max_length=128)
    username = me.StringField(required=True, unique=True, max_length=64)
    password = me.StringField(required=True)
-
-
    email = me.StringField(required=True, unique=True)
    status = me.StringField(default="active")
    roles = me.ListField(me.StringField(), default=["user"])
@@ -63,8 +57,8 @@ class User(me.Document, UserMixin):
    meta = {"collection": "users"}
 
 
-   first_name = me.StringField(required=True, max_length=128)
-   last_name = me.StringField(required=True, max_length=128)
+   first_name = me.StringField(max_length=128)
+   last_name = me.StringField(max_length=128)
 
 
    username = me.StringField(required=True, unique=True, max_length=64)

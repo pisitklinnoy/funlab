@@ -1,0 +1,18 @@
+{% extends "/base/base-layout.html" %}
+
+{% block title %}ลงทะเบียน
+{% endblock %}
+
+{% block body %}
+ลงทะเบียน
+<form class="ui form" method="post">
+    {{ form.csrf_token }}
+    {{ form.email }}
+    {{ form.username }}
+    {{ form.input_password }}
+    {{ form.confirm_password }}
+    <button type="submit">ยืนยัน</button>
+</form>
+
+
+{% endblock %}

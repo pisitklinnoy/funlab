@@ -1,0 +1,45 @@
+{% extends "/base/base-layout.html" %}
+
+{% block title %}เข้าสู่ระบบ
+{% endblock %}
+
+{% block body %}
+<div class="ui container">
+  <div class="eight wide column" style="padding: 20%;">
+    <div class="column">
+      <h2 class="ui black image header">
+        <i class="cheese icon large  " style="visibility: visible;"></i>
+
+          <div class="content">Log-in to your account</div>
+      </h2>
+      <form class="ui large form initial" method="post">
+        {{ form.csrf_token }}
+        <div class="ui stacked segment">
+          
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input id="text" name="username" required placeholder="Username">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input id="password" name="password" type="password" required placeholder="Password">
+            </div>
+          </div>
+          <div class="ui center aligned">
+                
+              <button class="ui fluid large black submit button " type="submit">เข้าสู่ระบบ</button>
+          </div>
+        </div>
+      </form>
+      <div class="ui message" style="text-align: center;">
+        New to us? 
+        <a href="{{ url_for('accounts.register') }}">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
