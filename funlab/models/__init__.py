@@ -4,8 +4,9 @@ from flask_mongoengine import MongoEngine
 from .users import User
 from .personals import Personal
 from .courses import Course
+from .foodimages import FoodImage
 
-__all__ = ["User", "Personal", "Course"]
+__all__ = ["User", "Personal", "Course", "FoodImage"]
 
 
 db = MongoEngine()

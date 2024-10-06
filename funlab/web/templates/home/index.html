@@ -109,6 +109,12 @@
                 FOOD & CALORIE
             </h1>
             <h2>Upload Photo and you will get calorie</h2>
+            {% if current_user.is_authenticated %}
+            <div class="ui divided list">
+                <a class="ui big teal button" style="margin-top: 1rem;" href="{{ url_for('foodimage.create') }}">Upload
+                    Image</a>
+            </div>
+            {% endif %}
         </div>
 
     </div>

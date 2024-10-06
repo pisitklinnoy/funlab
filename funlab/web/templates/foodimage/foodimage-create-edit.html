@@ -1,0 +1,28 @@
+{% extends "base/page.html" %}
+
+{% block content %}
+<div class="ui segment" style="margin-top: 2%">
+    <div class="ui header">
+        {% if 'create' in request.path %}
+        <span class="ui huge header">New Image</span>
+        {% else %}
+        <span class="ui huge header">Edit Image</span>
+        {% endif %}
+    </div>
+</div>
+<form method="POST" enctype="multipart/form-data" class="ui form">
+    {{ form.csrf_token }}
+    <div class="ui file input" style="margin-bottom: 1%;">
+        {{ form.document_upload }}
+    </div>
+    <div class="field">
+        {% if 'create' in request.path %}
+        <button type="submit" class="ui green button">Create</button>
+        {% else %}
+        <button type="submit" class="ui primary button">Update</button>
+        {% endif %}
+        <a class="ui button" href="{{ url_for('foodimage.index')}}">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}
