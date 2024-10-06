@@ -1,30 +1,21 @@
 {% extends "base/page.html" %}
 
 {% block content %}
-<div class="container" style="margin-top: 10%">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                {% for foodimage in foodimages | sort(attribute='updated_date', reverse=True) %}
-                <div class="card-body">
-                    <center>
-                        <img class="ui fluid image"
-                            src="{{ url_for('foodimage.get_image', document_id=foodimage.id, filename=foodimage.document.filename) }}" />
-                    </center>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui primary button" href="{{url_for('foodimage.edit', foodimage_id=foodimage.id)}}">
-                            แก้ไข
-                        </a>
-                        <a class="ui red button" href="{{url_for('foodimage.delete', foodimage_id=foodimage.id)}}">
-                            ลบข้อมูล
-                        </a>
-                    </div>
-                </div>
+<div class="ui cards" style="padding: 3rem;">
+    {% for foodimage in foodimages | sort(attribute='updated_date', reverse=True) %}
+        <div class="ui huge card" style="width: 400px;">
+          <img src="{{ url_for('foodimage.get_image', document_id=foodimage.id, filename=foodimage.document.filename) }}" style="max-width: 100%; max-height: 300px; object-fit: cover;" />
+          <div class="extra content">
+            <div class="ui two buttons">
+                <a class="ui primary button" href="{{url_for('foodimage.edit', foodimage_id=foodimage.id)}}">
+                    แก้ไข
+                </a>
+                <a class="ui red button" href="{{url_for('foodimage.delete', foodimage_id=foodimage.id)}}">
+                    ลบข้อมูล
+                </a>
             </div>
-            {% endfor %}
+          </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
