@@ -115,12 +115,6 @@ def main(weight,tall,age,sex,activity,image_path,image_name):
 print(main(weight,tall,age,sex,activity,image_path,image_name))
 
 
-@module.route("/forms/<user_id>")
-def profile(user_id):
-    user = current_user._get_current_object()
-    employer = model.Employer.object(id=user_id).first()
-    a = main()
-
     
 #"C:\Users\teera\Downloads\kfc.jpg"
 #"C:\Users\teera\Downloads\archive\images\hamburger\1567823.jpg"
