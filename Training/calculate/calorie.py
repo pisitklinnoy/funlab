@@ -1,19 +1,22 @@
 import os
+
+
+
 # แคลที่ต้องใช้
 def calculatecaloriesforday(weight,tall,age,sex,activity):
-    if sex is "man":
+    if sex == "man":
         BMR = 66 + (13.7*weight) + (5*tall)-(6.8*age)
-    elif sex is "woman":
+    elif sex == "woman":
         BMR = 665+(9.6*weight) + (1.8*tall)-(4.7*age)
-    if activity is "นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย" :
+    if activity == "นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย" :
         TDFF = BMR*1.2
-    elif activity is "ออกกำลังกายหรือเล่นกีฬาเล็กน้อย ประมาณอาทิตย์ละ 1-3 วัน" :
+    elif activity == "ออกกำลังกายหรือเล่นกีฬาเล็กน้อย ประมาณอาทิตย์ละ 1-3 วัน" :
         TDFF = BMR*1.375
-    elif activity is "ออกกำลังกายหรือเล่นกีฬาปานกลาง ประมาณอาทิตย์ละ 3-5 วัน" :
+    elif activity == "ออกกำลังกายหรือเล่นกีฬาปานกลาง ประมาณอาทิตย์ละ 3-5 วัน" :
         TDFF = BMR*1.55
-    elif activity is "ออกกำลังกายหรือเล่นกีฬาอย่างหนัก ประมาณอาทิตย์ละ 6-7 วัน" :
+    elif activity == "ออกกำลังกายหรือเล่นกีฬาอย่างหนัก ประมาณอาทิตย์ละ 6-7 วัน" :
         TDFF = BMR*1.725
-    elif activity is "ออกกำลังกายหรือเล่นกีฬาอย่างหนักทุกวันเช้าเย็น" :
+    elif activity == "ออกกำลังกายหรือเล่นกีฬาอย่างหนักทุกวันเช้าเย็น" :
         TDFF = BMR*1.9
     return TDFF
 
@@ -26,12 +29,11 @@ def calculatetotalcalories(listfood): #[9,9,9,8]
         '2' : 'burger', 
         '3' : 'cake' ,
         '4' : 'hot-dog' ,
-        '5' : 'noodle',
-        '6' : 'pizza' ,
-        '7' : 'salad' ,
-        '8' : 'spaghetti',
-        '9': 'steak',
-        '10':'sushi',
+        '5' : 'pizza' ,
+        '6' : 'salad' ,
+        '7' : 'spaghetti',
+        '8': 'steak',
+        '9':'sushi',
     }
     calorie_info = {
         'French-fries': 200,
@@ -39,7 +41,6 @@ def calculatetotalcalories(listfood): #[9,9,9,8]
         'burger': 150, 
         'cake'  : 100,
         'hot-dog' : 100,
-        'noodle' : 100,
         'pizza' : 100,
         'salad' : 100,
         'spaghetti' : 150,
@@ -84,23 +85,48 @@ def read_latest_class_indices(image_name):
 
 # print(calculatetotalcalories(read_latest_class_indices('IMG_20241004_200105.jpg')))
 def predict_image(image_path):
-    weights = 'runs/train/exp33/weights/best.pt'
+    weights = 'runs/train/exp36/weights/best.pt'
     img_size = 224
     conf_thresh = 0.25
     data_yaml = 'data.yaml'
     yolov5_path = 'detect.py'
 
-    command = (f"python {yolov5_path} --weights {weights} --img {img_size} --conf {conf_thresh}" 
+    command = (f"python3 {yolov5_path} --weights {weights} --img {img_size} --conf {conf_thresh}" 
     + f" --source {image_path} --data {data_yaml} --save-txt")
     
-    os.system(command)
-import tkinter as tk
-from tkinter import filedialog    
+    os.system(command) 
         
-predict_image("C:/Users/teera/Downloads/image-2.jpg")
+image_path = "/home/beer/images/pizzaforai.jpg"
+weight=int(input("weight :"))
+tall=int(input("tall :"))
+age=int(input("age :"))
+sex=str(input("sex :"))
+activity="ออกกำลังกายหรือเล่นกีฬาอย่างหนักทุกวันเช้าเย็น"
+image_name='pizzaforai.jpg'
 
-def main():
+def main(weight,tall,age,sex,activity,image_path,image_name):
+    predict_image(image_path)
+    totalcal=(calculatetotalcalories(read_latest_class_indices(image_name)))
+    needscal=calculatecaloriesforday(weight,tall,age,sex,activity)
+    # print(F'Foods_with {totalcal} calories.')
+    # print(F'Total Daily Energy Expenditure is {needscal:.2f} calories.')
+    return F'Foods_with {totalcal} calories.\nTotal Daily Energy Expenditure is {needscal:.2f} calories.'
 
+print(main(weight,tall,age,sex,activity,image_path,image_name))
+
+
+@module.route("/forms/<user_id>")
+def profile(user_id):
+    user = current_user._get_current_object()
+    employer = model.Employer.object(id=user_id).first()
+    a = main()
+
+    
+#"C:\Users\teera\Downloads\kfc.jpg"
+#"C:\Users\teera\Downloads\archive\images\hamburger\1567823.jpg"
+
+# import tkinter as tk
+# from tkinter import filedialog
     #    # สร้างหน้าต่างเลือกไฟล์
     # root = tk.Tk()
     # root.withdraw()  # ซ่อนหน้าต่างหลักของ tkinter
@@ -111,21 +137,5 @@ def main():
      # แยกชื่อไฟล์จาก path
     # file_name = os.path.basename(file_path)  # วิธีที่ 1: ใช้ os.path
 
-    weight=float(input("weight :"))
-    tall=float(input("tall :"))
-    age=int(input("age :"))
-    sex=input("sex :")
-    activity="ออกกำลังกายหรือเล่นกีฬาอย่างหนักทุกวันเช้าเย็น"
     # predict_image("C:/Users/teera/Downloads/kfc.jpg")
-    totalcal=(calculatetotalcalories(read_latest_class_indices('image-2.jpg')))
-    needscal=calculatecaloriesforday(weight,tall,age,sex,activity)
-    print(F'Foods_with {totalcal} calories.')
-    print(F'Total Daily Energy Expenditure is {needscal:.2f} calories.')
-
-main()
-    
-
-#"C:\Users\teera\Downloads\kfc.jpg"
-#"C:\Users\teera\Downloads\archive\images\hamburger\1567823.jpg"
-
 
