@@ -3,9 +3,9 @@
 {% block content %}
 <div class="ui cards" style="padding: 3rem;">
     {% for foodimage in foodimages | sort(attribute='updated_date', reverse=True) %}
-        <div class="ui huge card" style="width: 400px;">
-          <img src="{{ url_for('foodimage.get_image', document_id=foodimage.id, filename=foodimage.document.filename) }}" style="max-width: 100%; max-height: 300px; object-fit: cover;" />
-          <div class="extra content">
+    <div class="ui huge card" style="width: 400px;">
+        <img src="" style="max-width: 100%; max-height: 300px; object-fit: cover;" />
+        <div class="extra content">
             <div class="ui two buttons">
                 <a class="ui primary button" href="{{url_for('foodimage.edit', foodimage_id=foodimage.id)}}">
                     แก้ไข
@@ -14,8 +14,8 @@
                     ลบข้อมูล
                 </a>
             </div>
-          </div>
         </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

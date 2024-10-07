@@ -1,7 +1,5 @@
 import os
 
-
-
 # แคลที่ต้องใช้
 def calculatecaloriesforday(weight,tall,age,sex,activity):
     if sex == "man":

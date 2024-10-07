@@ -13,6 +13,19 @@ class Personal(me.Document):
     height = me.FloatField(required=True, min_value=0)
     gender = me.StringField(required=True, choices=GENDER)
     age = me.IntField(required=True, min_value=0)
+    activity = me.StringField(required=True)
+    file = me.FileField()
 
     created_date = me.DateTimeField(default=datetime.datetime.now)
     updated_date = me.DateTimeField(default=datetime.datetime.now)
+
+    def get_picture(self):
+        if self.file:
+            response = send_file(
+                self.file,
+                download_name=self.file.filename,
+                mimetype=self.file.content_type,
+            )
+            return response
+        else:
+            pass

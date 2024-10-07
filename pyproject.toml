@@ -21,6 +21,7 @@ requests = "^2.32.3"
 pillow = "^10.4.0"
 email-validator = "^2.1.1"
 black = "^24.8.0"
+imageio = "^2.35.1"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^3.9.2"

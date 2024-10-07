@@ -10,7 +10,7 @@
 <div style="padding: 1%;">
 
   <!-- Responsive Form -->
-  <form class="ui form" method="post">
+  <form method="POST" enctype="multipart/form-data" class="ui form">
     <!-- CSRF Token for protection -->
     {{ form.csrf_token }}
 
@@ -64,16 +64,32 @@
             {{ form.age }}
           </div>
         </div>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="row">
         <div class="column">
-          <button class="ui fluid large black submit button" type="submit">Submit</button>
+          <!-- Age Field -->
+          <div class="field">
+            <label>Activity</label>
+            {{ form.activity }}
+          </div>
         </div>
+        <div class="column">
+          <!-- Age Field -->
+          <div class="field">
+            <label>File</label>
+            <div class="ui file input" style="margin-bottom: 1%;">
+              {{ form.document_upload }}
+            </div>
+          </div>
+        </div>
+      </div> 
+
+        <div class="row">
+          <div class="column">
+        <button class="ui fluid large black submit button" type="submit">Submit</button>
+        <!-- <a class="ui fluid large black submit button" href="{{ url_for('home.index')}}">submit</a> -->
       </div>
     </div>
-  </form>
+</div>
+</form>
 </div>
 
 {% endblock content %}
