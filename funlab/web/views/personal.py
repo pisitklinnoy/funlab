@@ -86,7 +86,15 @@ def calculator(personal_id):
         # image_name=personal.file.filename,
     )
     print("result = ", results)
-    return render_template("/personal/calculator.html", personal=personal)
+    image_path = get_latest_exp_file()
+    print(image_path)
+
+    return render_template(
+        "/personal/calculator.html",
+        personal=personal,
+        results=results,
+        image_path=image_path,
+    )
 
 
 # แคลที่ต้องใช้
@@ -208,6 +216,43 @@ def predict_image(image_path):
 # sex=str(input("sex :"))
 # activity="ออกกำลังกายหรือเล่นกีฬาอย่างหนักทุกวันเช้าเย็น"
 # image_name='pizzaforai.jpg'
+
+import os
+
+
+def get_latest_exp_file():
+    runs_dir = "funlab/web/views/utils/runs/detect"
+
+    # ค้นหาโฟลเดอร์ที่อยู่ใน runs_dir และเป็นโฟลเดอร์จริง ๆ
+    subdirs = [
+        d for d in os.listdir(runs_dir) if os.path.isdir(os.path.join(runs_dir, d))
+    ]
+
+    # ค้นหาโฟลเดอร์ล่าสุดที่เริ่มต้นด้วย 'exp'
+    exp_dirs = sorted(
+        [d for d in subdirs if d.startswith("exp")],
+        key=lambda x: os.path.getmtime(os.path.join(runs_dir, x)),
+        reverse=True,
+    )
+
+    if exp_dirs:
+        latest_exp_dir = os.path.join(runs_dir, exp_dirs[0])
+        image_path = os.path.join(
+            latest_exp_dir,
+        )
+
+        # ตรวจสอบว่าไฟล์มีอยู่จริง
+        if os.path.exists(image_path):
+            return image_path
+        else:
+            return "ไม่พบไฟล์ downloaded_image.jpg ในโฟลเดอร์ล่าสุด"
+    else:
+        return "ไม่พบโฟลเดอร์ที่เริ่มต้นด้วย 'exp' ใน runs_dir"
+
+
+# เรียกใช้ฟังก์ชัน
+latest_image = get_latest_exp_file()
+print("--------------------------------------------------", latest_image)
 
 
 def main(weight, height, age, sex, activity, image_path, image_name):
