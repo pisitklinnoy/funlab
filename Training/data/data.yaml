@@ -1,13 +1,13 @@
 train: data/train/images
-val: data/train/images
-# test: ../test/images
+val: data/valid/images
+test: data/test/images
 
 nc: 10
-names: ['French-fries', 'KFC', 'burger', 'cake', 'hot-dog', 'pizza', 'salad', 'spaghetti', 'steak', 'sushi']
+names: ['French-fries', 'KFC', 'burger', 'cake', 'donut', 'hot-dog', 'noodle', 'pizza', 'salad', 'steak']
 
 roboflow:
   workspace: teeranon
   project: food-b2mcm
-  version: 5
+  version: 11
   license: CC BY 4.0
-  url: https://universe.roboflow.com/teeranon/food-b2mcm/dataset/5
+  url: https://universe.roboflow.com/teeranon/food-b2mcm/dataset/11

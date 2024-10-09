@@ -23,12 +23,11 @@
     {% if image_path %}
     <div style="margin-top: 20px;">
         <h2>Uploaded Image</h2>
-        <img src="{{ url_for('static', filename='views/utils/temp/downloaded_image.jpg') }}" alt="Uploaded Image" style="max-width: 400px; max-height: 400px;">
+        <img src="{{ url_for('serve_image', filename='downloaded_image.jpg') }}" alt="Uploaded Image" style="max-width: 400px; max-height: 400px;">
     </div>
     {% else %}
     <p>No image available.</p>
     {% endif %}
 </div>
 
-<img {{ image_path }}>
 {% endblock content %}

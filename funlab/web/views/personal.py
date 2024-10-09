@@ -127,7 +127,7 @@ def calculatetotalcalories(listfood):  # [9,9,9,8]
         "4": "hot-dog",
         "5": "pizza",
         "6": "salad",
-        "7": "spaghetti",
+        "12": "spaghetti",
         "8": "steak",
         "9": "sushi",
     }

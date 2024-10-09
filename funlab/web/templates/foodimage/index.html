@@ -1,5 +1,4 @@
 {% extends "base/page.html" %}
-
 {% block content %}
 <div class="ui cards" style="padding: 3rem;">
     {% for foodimage in foodimages | sort(attribute='updated_date', reverse=True) %}
